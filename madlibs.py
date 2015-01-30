@@ -36,12 +36,18 @@ def show_game_form():
     if response == "yes":
         return render_template("game.html")
 
-@app.route('/madlib')
+@app.route('/madlib', methods=['GET', 'POST'])
 def show_madlib():
-    person = request.args.get("person")
-    noun = request.args.get("noun")
-    adjective = request.args.get("adjective")
-    color = request.args.get("color")
+    if request.method == 'POST':
+        person = request.form["person"]
+        noun = request.form["noun"]
+        adjective = request.form["adjective"]
+        color = request.form["color"]
+    if request.method == 'GET':
+        person = request.args.get("person")
+        noun = request.args.get("noun")
+        adjective = request.args.get("adjective")
+        color = request.args.get("color")
     
     POSSIBLE_MADLIBS = ["madlib.html", "madlib2.html"]
 
