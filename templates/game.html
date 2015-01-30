@@ -2,18 +2,40 @@
 <html>
 <head>
   <title>Madlib</title>
+  <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+ 
+<style> 
+    .error_show{
+        color: red;
+        margin-left: 10px;
+    }
+
+</style>
+
 </head>
 <body>
     <p>
     Hi {{ person }}! I think you're {{ compliment }}!
     Would you like to play a game? 
     </p>
-    <form action ="/madlib" method="POST">
-        <label for="person">Person: </label><input type="text" name="person" id="person"><br>
+    <form action ="/madlib" method="POST" id="our-form">
+        <label for="person">Person: </label><input type="text" name="person" id="person" value=""><br> 
         <label for="noun">Noun: </label><input type="text" name="noun" id="noun"><br>
         <label for="adjective">Adjective: </label><input type="text" name="adjective" id="adjective"><br>
         <label for="color">Color: </label><input type="text" name="color" id="color"><br>
         <input type="submit">
     </form>
+
+<script>
+    $('#our-form').on('submit', function(evt) {
+        var person_sub = $('#person').val();
+        alert(person_sub);
+        if (person_sub.length === 0) {
+            $('#person').addClass('error_show');
+            alert("Please fill in all fields");
+            evt.preventDefault();
+        }
+    });
+</script>
 </body>
 </html>

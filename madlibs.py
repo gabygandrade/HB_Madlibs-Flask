@@ -39,10 +39,10 @@ def show_game_form():
 @app.route('/madlib', methods=['GET', 'POST'])
 def show_madlib():
     if request.method == 'POST':
-        person = request.form["person"]
-        noun = request.form["noun"]
-        adjective = request.form["adjective"]
-        color = request.form["color"]
+        person = request.form.get("person")
+        noun = request.form.get("noun")
+        adjective = request.form.get("adjective")
+        color = request.form.get("color")
     if request.method == 'GET':
         person = request.args.get("person")
         noun = request.args.get("noun")
